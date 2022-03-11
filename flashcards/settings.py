@@ -17,7 +17,7 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # For django-environ
-env = environ.Env(
+env=environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
