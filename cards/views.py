@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Deck
+from django.contrib.auth.decorators import login_required, user_passes_test
+from .models import Deck, User
+
 
 
 
@@ -10,7 +12,8 @@ def login(request):
         return redirect("home")
     return render(request, "cards/login.html")
 
-def home(request):
+@login_required
+def home(request):   #this will include our list of the decks. Kind of like list_books or list_albums in other projects
     decks = Deck.objects.all()
     return render(request, "cards/home.html", {"decks": decks})
 
