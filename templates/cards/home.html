@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="flashcard-list">
+    <h1>Your flashcard sets</h1>
+    <div class="sort">
+        {% for deck in decks %}
+        <div class="deck mv4 pa3 br1 measure-narrow ba b--light-silver">
+        <a href="" class="deck_title f3 fw6 db dark-pink no-underline underline-hover">{{deck.title }}</a>
+            <p class="mv3 f4">{{ deck.description }} </p>
+    </div>
+        {% empty %}
+        <h2>Sorry, there are no results.</h2>
+        <h3>Login/Register to get started or add some flashcards now.</h3>
+        {% endfor %}
+</section>
+
+<section class="add-deck mt4">
+    <a href="" class="db dark-pink link dim"><i class="fa fa-plus ph2"></i>Add a new set of flashcards</a>
+</section>
+{% endblock content %}

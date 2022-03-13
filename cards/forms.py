@@ -1,5 +1,5 @@
 from django import forms
-from .models import Deck, Card
+from .models import Deck, Card, User
 
 
 class DeckForm(forms.ModelForm):
