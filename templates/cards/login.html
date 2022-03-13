@@ -20,4 +20,11 @@
         </a>
     </div>
 </article>
+
+    {% for album in albums %}
+        <div class="album mv4 pa3 br1 measure-narrow ba b--light-silver">
+            <a href="" class="album_title f3 fw6 db dark-pink no-underline underline-hover">{{deck.title }}</a>
+        <p class="mv3 f4">{{ deck.description }} </p>
+    {% endfor %} 
+
 {% endblock content %}
