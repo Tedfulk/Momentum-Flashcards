@@ -25,7 +25,12 @@
                 <!-- // if you are logged in -->
                 {% if user.is_authenticated %}
                     <a href={% url 'auth_logout' %} class="white ml3">Log Out</a>
-                <!-- // if you are not logged in -->
+                    <div>
+                        <nav class="f3 lh-title white items-center no-underline">
+                            <a href="{% url 'add_deck' %}">Create Deck</a>
+                        </nav>
+                    </div>
+                    <!-- // if you are not logged in -->
                 {% else %}
                     <a href={% url 'registration_register' %} class="white ml3">Register</a>
                     <a href={% url 'auth_login' %} class="white ml2">Log In</a>
@@ -33,11 +38,7 @@
 
             </div>
         </nav>
-        <div>
-            <nav class="f3 lh-title white items-center no-underline">
-                <a href="{% url 'add_deck' %}">Create Deck</a>
-            </nav>
-        </div>
+
     </header>
 
     <div class="ma5">
