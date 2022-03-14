@@ -47,15 +47,16 @@ def add_card(request):
 
 
 @login_required
-def edit_card(request, pk):
-    card = get_object_or_404(Card, pk=pk)
+def edit_card(request, card_pk):
+    card = get_object_or_404(Card, pk=card_pk)
     if request.method == 'GET':
         form = CardForm(instance=card)
     else:
         form = CardForm(data=request.POST, instance=card)
         if form.is_valid():
+            deck_pk = card.deck.pk
             form.save()
-            return redirect(to='card_list')
+            return redirect(to='card_list', pk=deck_pk)
 
     return render(request, "cards/edit_card.html", {
         "form": form,
@@ -64,12 +65,13 @@ def edit_card(request, pk):
 
 
 @login_required
-def delete_card(request, pk):
-    card = get_object_or_404(Card, pk=pk)
+def delete_card(request, card_pk):
+    card = get_object_or_404(Card, pk=card_pk)
     if request.method == 'POST':
+        deck_pk = card.deck.pk
         card.delete()
-        return redirect(to='card_list')
-    return render(request, "cards/delete_card.html", {"card": card})
+        return redirect(to='card_list', pk=deck_pk)
+    return render(request, "cards/delete_card.html", {"card": card, }) 
 
 
 @login_required
