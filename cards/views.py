@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import Deck, User
+from .models import Deck, User, Card
 from .forms import CardForm, DeckForm
 
 
@@ -28,7 +28,41 @@ def add_card(request):
             form.save()
             return redirect(to='card_list')
 
-    return render(request, "cadrs/add_card.html", {"form": form})
+    return render(request, "cards/add_card.html", {"form": form})
+
+
+@login_required
+def edit_card(request, pk):
+    card = get_object_or_404(Card, pk=pk)
+    if request.method == 'GET':
+        form = CardForm(instance=card)
+    else:
+        form = CardForm(data=request.POST, instance=card)
+        if form.is_valid():
+            form.save()
+            return redirect(to='home')
+
+    return render(request, "cards/edit_card.html", {
+        "form": form,
+        "card": card
+    })
+
+
+def delete_card(request, pk):
+    card = get_object_or_404(Card, pk=pk)
+    if request.method == 'POST':
+        card.delete()
+        return redirect(to='card_list')
+    return render(request, "cards/delete_card.html",
+                  {"card": card})
+
+
+@login_required
+def card_list(request, pk):
+    deck = get_object_or_404(Deck, pk=pk)
+    cards = Card.objects.all()
+    return render(request, "cards/card_list.html", {"cards": cards, "decks": deck})
+
 
 # def login(request):
 #     if request.user.is_authenticated:

@@ -5,20 +5,14 @@
 
  <h1>All Cards</h1>
 
- <!-- <div class="flex-wrap"> -->
-  <!-- <h4>Sort by:</h4> -->
-  <!-- {% for category in categorys %} -->
-  <!-- <a href="{% url 'category' slug=category.slug %}" class="flex-wrap"><button type="submit">{{ category.name }}</button></a> -->
-  <!-- {% endfor %} -->
- <!-- </div> -->
-
  <div>
   {% for card in cards %}
-  <div>
-    <p class=" ba br2 pa2">{{ card.word }}</p>
+  <div class=" ba br2 pa2">
+    <p>{{ card.word }}</p>
+    <p>{{ card.definition }}</p>
   </div>
-  <button><a href="{% url 'edit_book' pk=card.pk %}" class="no-underline black">Edit Card</a></button><br />
-  <button><a href="{% url 'delete_book' pk=card.pk %}" class="no-underline black">Delete Card</a></button>
+  <button><a href="{% url 'edit_card' pk=card.pk %}" class="no-underline black">Edit Card</a></button><br />
+  <button><a href="{% url 'delete_card' pk=card.pk %}" class="no-underline black">Delete Card</a></button>
   {% endfor %}
  </div>
 
