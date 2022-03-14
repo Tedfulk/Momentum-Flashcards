@@ -11,8 +11,8 @@
     <p>{{ card.word }}</p>
     <p>{{ card.definition }}</p>
   </div>
-  <button><a href="{% url 'edit_card' pk=card.pk %}" class="no-underline black">Edit Card</a></button><br />
-  <button><a href="{% url 'delete_card' pk=card.pk %}" class="no-underline black">Delete Card</a></button>
+  <button><a href="{% url 'edit_card' card_pk=card.pk %}" class="no-underline black">Edit Card</a></button><br />
+  <button><a href="{% url 'delete_card' card_pk=card.pk %}" class="no-underline black">Delete Card</a></button>
   {% endfor %}
  </div>
 
