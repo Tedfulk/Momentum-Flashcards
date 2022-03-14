@@ -17,5 +17,4 @@ class CardForm(forms.ModelForm):
         fields = [
             'word',
             'definition',
-            'deck',
         ]

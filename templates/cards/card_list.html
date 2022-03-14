@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="messages ba br2 b--silver bg-washed-green pa2">
+
+ <h1>All Cards</h1>
+
+ <div>
+  {% for card in cards %}
+  <div class=" ba br2 pa2">
+    <p>{{ card.word }}</p>
+    <p>{{ card.definition }}</p>
+  </div>
+  <button><a href="{% url 'edit_card' pk=card.pk %}" class="no-underline black">Edit Card</a></button><br />
+  <button><a href="{% url 'delete_card' pk=card.pk %}" class="no-underline black">Delete Card</a></button>
+  {% endfor %}
+ </div>
+
+</div>
+{% endblock %}

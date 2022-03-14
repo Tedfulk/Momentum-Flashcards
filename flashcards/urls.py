@@ -22,4 +22,7 @@ urlpatterns = [
     path('', flash_views.login, name='login'),
     path('cards/', flash_views.home, name='home'),
     path('accounts/', include('registration.backends.simple.urls')),
+    path('cards/<int:pk>/', flash_views.card_list, name='card_list'),
+    path('cards/<int:pk>/edit/', flash_views.edit_card, name='edit_card'),
+    path('cards/<int:pk>/delete/', flash_views.delete_card, name='delete_card'),
 ]

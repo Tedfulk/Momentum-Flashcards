@@ -39,7 +39,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'registration', 
+    'registration',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,4 +138,4 @@ AUTH_USER_MODEL = "cards.User"
 
 SIMPLE_BACKEND_REDIRECT_URL = "/"
 
-LOGIN_REDIRECT_URL = "auth_login"
+LOGIN_REDIRECT_URL = "/"
