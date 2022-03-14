@@ -40,7 +40,7 @@ def edit_card(request, pk):
         form = CardForm(data=request.POST, instance=card)
         if form.is_valid():
             form.save()
-            return redirect(to='home')
+            return redirect(to='card_list')
 
     return render(request, "cards/edit_card.html", {
         "form": form,
@@ -48,19 +48,20 @@ def edit_card(request, pk):
     })
 
 
+@login_required
 def delete_card(request, pk):
     card = get_object_or_404(Card, pk=pk)
     if request.method == 'POST':
         card.delete()
         return redirect(to='card_list')
-    return render(request, "cards/delete_card.html",
-                  {"card": card})
+    return render(request, "cards/delete_card.html", {"card": card})
 
 
 @login_required
 def card_list(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
-    cards = Card.objects.all()
+    # cards = Card.objects.filter(deck_id=pk)
+    cards = deck.cards.all()
     return render(request, "cards/card_list.html", {"cards": cards, "decks": deck})
 
 
