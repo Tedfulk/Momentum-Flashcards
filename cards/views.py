@@ -25,7 +25,7 @@ def add_deck(request):
         if form.is_valid():
             deck = form.save()
 
-            return redirect("card_list")
+            return redirect("home")
     else:
         form = DeckForm()
 
