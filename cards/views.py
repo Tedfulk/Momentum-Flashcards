@@ -19,6 +19,21 @@ def home(request):  # this will include our list of the decks. Kind of like list
 
 
 @login_required
+def add_deck(request):
+    if request.method == 'POST':
+        form = DeckForm(data=request.POST)
+        if form.is_valid():
+            deck = form.save()
+
+            return redirect("home")
+    else:
+        form = DeckForm()
+
+        return render(request, "cards/add_deck.html", {'form': form,})
+
+
+
+@login_required
 def add_card(request):
     if request.method == 'GET':
         form = CardForm()

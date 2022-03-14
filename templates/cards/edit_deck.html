@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1>Customize Your Deck Below</h1>
+
+
+<div>
+    <form action="{% url 'edit_deck' pk=book.pk %}" method="post">
+        {% csrf_token %}
+        {{% from.as_p %}}
+        <div>
+            <button type="submit">Update Deck</button>
+        </div>
+    </form>
+</div>
