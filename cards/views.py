@@ -29,8 +29,35 @@ def add_deck(request):
     else:
         form = DeckForm()
 
-        return render(request, "cards/add_deck.html", {'form': form,})
+        return render(request, "cards/add_deck.html", {'form': form})
 
+
+@login_required
+def delete_deck(request, deck_pk):
+    deck = get_object_or_404(Deck, pk=deck_pk)
+    if request.method == 'POST':
+        deck.delete()
+        return redirect(to='home')
+    return render(request, "cards/delete_deck.html", {"deck": deck})
+
+
+@login_required
+def edit_deck(request, deck_pk):
+    deck = get_object_or_404(Deck, pk=deck_pk)
+    if request.method == 'GET':
+        form = DeckForm(instance=deck)
+    else:
+        form = DeckForm(data=request.POST, instance=deck)
+        if form.is_valid():
+            form.save()
+            return redirect(to='home')
+
+    return render(request, "cards/edit_deck.html", {
+        "form": form,
+        "deck": deck
+    })
+
+# add_card view isn't working. needs fixed
 
 
 @login_required
@@ -40,7 +67,8 @@ def add_card(request):
     else:
         form = CardForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            card = form.save(commit=False)
+            card.save()
             return redirect(to='card_list')
 
     return render(request, "cards/add_card.html", {"form": form})
@@ -71,7 +99,7 @@ def delete_card(request, card_pk):
         deck_pk = card.deck.pk
         card.delete()
         return redirect(to='card_list', pk=deck_pk)
-    return render(request, "cards/delete_card.html", {"card": card, }) 
+    return render(request, "cards/delete_card.html", {"card": card, })
 
 
 @login_required
@@ -80,15 +108,3 @@ def card_list(request, pk):
     # cards = Card.objects.filter(deck_id=pk)
     cards = deck.cards.all()
     return render(request, "cards/card_list.html", {"cards": cards, "decks": deck})
-
-
-# def login(request):
-#     if request.user.is_authenticated:
-#         return redirect("home")
-#     return render(request, "cards/login.html")
-
-
-# def home(request):
-#     if request.user.is_authenticated:
-#         return redirect("list_albums")
-#     return render(request, "music/home.html")

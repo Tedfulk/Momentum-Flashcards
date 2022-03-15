@@ -7,11 +7,12 @@
 
 
 <div>
-    <form action="{% url 'edit_deck' pk=book.pk %}" method="post">
+    <form action="{% url 'edit_deck' deck_pk=deck.pk %}" method="post">
         {% csrf_token %}
-        {{% from.as_p %}}
+        {{ form.as_p }}
         <div>
             <button type="submit">Update Deck</button>
         </div>
     </form>
 </div>
+{% endblock %}
