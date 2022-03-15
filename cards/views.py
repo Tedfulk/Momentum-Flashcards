@@ -108,3 +108,23 @@ def card_list(request, pk):
     # cards = Card.objects.filter(deck_id=pk)
     cards = deck.cards.all()
     return render(request, "cards/card_list.html", {"cards": cards, "decks": deck})
+<<<<<<< Updated upstream
+=======
+
+def run_deck(request):
+    pass
+    # deck = get_object_or_404(Deck, pk=pk)
+    # cards = Card.objects.all()
+   
+
+# def login(request):
+#     if request.user.is_authenticated:
+#         return redirect("home")
+#     return render(request, "cards/login.html")
+
+
+# def home(request):
+#     if request.user.is_authenticated:
+#         return redirect("list_albums")
+#     return render(request, "music/home.html")
+>>>>>>> Stashed changes
