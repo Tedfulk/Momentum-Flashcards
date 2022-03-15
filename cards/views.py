@@ -61,17 +61,19 @@ def edit_deck(request, deck_pk):
 
 
 @login_required
-def add_card(request):
+def add_card(request, pk):
+    deck = get_object_or_404(Deck, pk=pk)
     if request.method == 'GET':
         form = CardForm()
     else:
         form = CardForm(data=request.POST)
         if form.is_valid():
             card = form.save(commit=False)
+            card.deck = deck
             card.save()
-            return redirect(to='card_list')
+            return redirect(to='card_list', pk=deck.pk)
 
-    return render(request, "cards/add_card.html", {"form": form})
+    return render(request, "cards/add_card.html", {"form": form, "deck": deck})
 
 
 @login_required
@@ -109,20 +111,8 @@ def card_list(request, pk):
     cards = deck.cards.all()
     return render(request, "cards/card_list.html", {"cards": cards, "decks": deck})
 
+
 def run_deck(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
     cards = deck.cards.all()
     return render(request, "cards/run_deck.html", {"cards": cards, "deck": deck})
-    
-   
-
-# def login(request):
-#     if request.user.is_authenticated:
-#         return redirect("home")
-#     return render(request, "cards/login.html")
-
-
-# def home(request):
-#     if request.user.is_authenticated:
-#         return redirect("list_albums")
-#     return render(request, "music/home.html")

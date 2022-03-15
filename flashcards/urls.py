@@ -22,8 +22,9 @@ urlpatterns = [
     path('', flash_views.login, name='login'),
     path('cards/', flash_views.home, name='home'),
     path('accounts/', include('registration.backends.simple.urls')),
-    path('cards/addcard/', flash_views.add_deck, name='add_deck'),
-    path('cards/<int:deck_pk>/deletedeck/', flash_views.delete_deck, name='delete_deck'),
+    path('cards/adddeck/', flash_views.add_deck, name='add_deck'),
+    path('cards/<int:deck_pk>/deletedeck/',
+         flash_views.delete_deck, name='delete_deck'),
     path('cards/<int:deck_pk>/editdeck/',
          flash_views.edit_deck, name='edit_deck'),
     path('cards/<int:pk>/', flash_views.card_list, name='card_list'),
@@ -31,5 +32,5 @@ urlpatterns = [
     path('cards/<int:card_pk>/edit/', flash_views.edit_card, name='edit_card'),
     path('cards/<int:card_pk>/delete/',
          flash_views.delete_card, name='delete_card'),
-    path('cards/add/', flash_views.add_card, name='add_card'),
+    path('cards/<int:pk>/add/', flash_views.add_card, name='add_card'),
 ]
