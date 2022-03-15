@@ -1,6 +1,12 @@
 
 {% extends "base.html" %}
 
+{% load static %}
+
+{% block javascript %}
+<script src={% static "js/run_deck.js" %} defer></script>
+{% endblock javascript %}
+
 {% block content %}
 
 This is where the user will do their flashcards
