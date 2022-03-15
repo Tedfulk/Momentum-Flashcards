@@ -11,7 +11,7 @@
         <a href="{% url 'card_list' pk=deck.pk %}" class="deck_title f3 fw6 db dark-pink no-underline underline-hover">{{deck.title }}</a>
             <p class="mv3 f4">{{ deck.description }} </p>
             <section class="add-deck mt4">
-                <a href="{% url 'add_card' %}" class="db dark-pink link dim"><i class="fa fa-plus ph2"></i>Add flashcards to deck</a>
+                <a href="{% url 'add_card' pk=deck.pk %}" class="db dark-pink link dim"><i class="fa fa-plus ph2"></i>Add flashcards to deck</a>
                 <a href="{% url 'edit_deck' deck_pk=deck.pk %}"><i class="fa-solid fa-pen-to-square db dark-pink link dim pa2"></i></a>
                 <a href="{% url 'delete_deck' deck_pk=deck.pk %}"><i class="fa-solid fa-circle-minus db dark-pink link dim pa2"></i></a>
                 <div class="ph3">
