@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-
+<h1>Create Your Card!!</h1>
 <div>
  <form action="{% url 'add_card' %}" method="POST">
   {% csrf_token %}

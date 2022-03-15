@@ -7,7 +7,6 @@
  <form action="{% url 'delete_card' card_pk=card.pk %}" method="POST">
   {% csrf_token %}
   <p>Are you sure you want to delete {{ card }} ?</p> 
-  <!-- <p>Are you sure you want to delete {{ card }}?</p> it may have to be just the entire card. and not just the card.word.  -->
   <div>
    <button type="submit">Delete Card</button><br />
    <a href="{% url 'card_list' pk=card.deck.pk %}">Cancel</a>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Delete Card</h1>
+
+<div>
+ <form action="{% url 'delete_deck' deck_pk=deck.pk %}" method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <p>Are you sure you want to delete {{ deck.title }} ?</p>
+  <div>
+   <button type="submit">Delete Deck</button><br />
+   <a href="{% url 'home' %}">Cancel</a>
+  </div>
+ </form>
+</div>
+{% endblock %}
