@@ -15,7 +15,7 @@
                 <a href="{% url 'edit_deck' deck_pk=deck.pk %}"><i class="fa-solid fa-pen-to-square db dark-pink link dim pa2"></i></a>
                 <a href="{% url 'delete_deck' deck_pk=deck.pk %}"><i class="fa-solid fa-circle-minus db dark-pink link dim pa2"></i></a>
                 <div class="ph3">
-                    <a class="f6 link dim br2 ba ph3 pv2 mb2 dib dark-pink" href="{% url 'run_deck' pk=deck.pk %}">Run Flashcards</a>
+                    <a class="f6 link dim br2 ba ph3 pv2 mb2 dib dark-pink" href="{% url 'run_deck' deck_pk=deck.pk %}">Run Flashcards</a>
                   </div>
             </section>
     </div>

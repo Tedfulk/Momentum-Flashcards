@@ -6,9 +6,10 @@
   <h1>All Cards</h1>
   <div class="button ph3 mb4">
   <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy" href="{% url 'home' %}"><i class="fa-solid fa-bolt"></i> Home</a>
+  <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy"href="{% url 'run_deck' deck_pk=deck.pk %}">Run Flashcards</a>
   </div>
   <div>
-  {% for card in cards %}
+  {% for card in deck.cards.all %}
   <div class=" ba br2 pa2">
     <p>{{ card.word }}</p>
     <p>{{ card.definition }}</p>
