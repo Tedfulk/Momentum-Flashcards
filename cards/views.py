@@ -107,12 +107,12 @@ def delete_card(request, card_pk):
 @login_required
 def card_list(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
-    # cards = Card.objects.filter(deck_id=pk)
-    cards = deck.cards.all()
-    return render(request, "cards/card_list.html", {"cards": cards, "decks": deck})
+    return render(request, "cards/card_list.html", {"deck": deck})
 
 
-def run_deck(request, pk):
-    deck = get_object_or_404(Deck, pk=pk)
-    cards = deck.cards.all()
-    return render(request, "cards/run_deck.html", {"cards": cards, "deck": deck})
+def run_deck(request, deck_pk):
+    deck = get_object_or_404(Deck, pk=deck_pk)
+    return render(request, "cards/run_deck.html", {"deck": deck})
+
+
+
