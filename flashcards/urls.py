@@ -27,6 +27,7 @@ urlpatterns = [
     path('cards/<int:deck_pk>/editdeck/',
          flash_views.edit_deck, name='edit_deck'),
     path('cards/<int:pk>/', flash_views.card_list, name='card_list'),
+    path('cards/<int:pk>/run', flash_views.run_deck, name='run_deck'),
     path('cards/<int:card_pk>/edit/', flash_views.edit_card, name='edit_card'),
     path('cards/<int:card_pk>/delete/',
          flash_views.delete_card, name='delete_card'),

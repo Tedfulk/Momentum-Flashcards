@@ -108,3 +108,21 @@ def card_list(request, pk):
     # cards = Card.objects.filter(deck_id=pk)
     cards = deck.cards.all()
     return render(request, "cards/card_list.html", {"cards": cards, "decks": deck})
+
+def run_deck(request, pk):
+    deck = get_object_or_404(Deck, pk=pk)
+    cards = deck.cards.all()
+    return render(request, "cards/run_deck.html", {"cards": cards, "deck": deck})
+    
+   
+
+# def login(request):
+#     if request.user.is_authenticated:
+#         return redirect("home")
+#     return render(request, "cards/login.html")
+
+
+# def home(request):
+#     if request.user.is_authenticated:
+#         return redirect("list_albums")
+#     return render(request, "music/home.html")
