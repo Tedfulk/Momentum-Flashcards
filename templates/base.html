@@ -9,31 +9,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skyclan Flashcards</title>
     {% block meta %}{% endblock meta %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://kit.fontawesome.com/44fceef069.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'stylesheet.css'%}">
     {% block javascript %}{% endblock javascript %}
 </head>
 <!-- this is the nav bar for all the pages -->
 
 <body class="sans-serif">
-    <header class="header bg-black b--white-10 flex justify-between">
-        <a href={% url "login" %} class="f3 lh-title white items-center no-underline"><h1 class="f3 lh-title white items-center"><i class="fa-solid fa-bolt"></i> Skyclan Flashcards <i class="fa-solid fa-bolt"></i></h1></a>
+    <header class="header bg-dark-blue b--white-10 flex justify-between">
+        <a href={% url "login" %} class="m3 f4 lh-title white items-center no-underline"><h1 class="m3 f3 lh-title near-white items-center">  <i class="  fa-solid fa-bolt" style="color:#fff000"></i>  Skyclan Flashcards  <i class="  fa-solid fa-bolt" style="color:#fff000"></i></h1></a>
         <nav class="flex bb">
             <div class="flex-grow pa3 flex items-center">
                 <!-- // if you are logged in -->
                 {% if user.is_authenticated %}
                 <div>
                     <nav>
-                        <a href={% url 'add_deck' %} class="white ml3">Create Deck</a>
-                    </nav>
-                </div>
-                <a href={% url 'auth_logout' %} class="white ml3">Log Out</a>
+                        <a href={% url 'add_deck' %} class="fw6 near-white ml3">Create Deck</a>
+                <a href={% url 'auth_logout' %} class="fw6 near-white ml3">Log Out</a>
                     <!-- // if you are not logged in -->
                 {% else %}
-                    <a href={% url 'registration_register' %} class="white ml3">Register</a>
-                    <a href={% url 'auth_login' %} class="white ml2">Log In</a>
+                    <a href={% url 'registration_register' %} class="fw6 near-white ml3">Register</a>
+                    <a href={% url 'auth_login' %} class="fw6 near-white ml2">Log In</a>
                 {% endif %}
 
             </div>
