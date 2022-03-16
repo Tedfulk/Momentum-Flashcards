@@ -1,23 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="messages ba br2 b--silver bg-washed-green pa2">
+
 
   <h1>All Cards</h1>
   <div class="button ph3 mb4">
   <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy" href="{% url 'home' %}"><i class="fa-solid fa-bolt"></i> Home</a>
   <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy"href="{% url 'run_deck' deck_pk=deck.pk %}">Run Flashcards</a>
   </div>
-  <div>
+  <div class="each-card ba br2 b--dark-blue bg-bg-yellow pa2>
   {% for card in deck.cards.all %}
-  <div class=" ba br2 pa2">
+  <div class="ba br2 pa2">
     <p>{{ card.word }}</p>
     <p>{{ card.definition }}</p>
-  </div>
+  
   <button><a href="{% url 'edit_card' card_pk=card.pk %}" class="no-underline black">Edit Card</a></button><br />
   <button><a href="{% url 'delete_card' card_pk=card.pk %}" class="no-underline black">Delete Card</a></button>
+  
+  </br>
   {% endfor %}
   </div>
+
 
 </div>
 {% endblock %}
