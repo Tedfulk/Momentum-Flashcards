@@ -6,6 +6,7 @@
   <h1>All Cards</h1>
   <div class="button ph3 mb4">
   <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy" href="{% url 'home' %}"><i class="fa-solid fa-bolt"></i> Home</a>
+  <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy"href="{% url 'add_card' pk=deck.pk %}">Add Flashcard</a>
   <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy"href="{% url 'run_deck' deck_pk=deck.pk %}">Run Flashcards</a>
   </div>
   <div>
