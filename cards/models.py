@@ -15,6 +15,7 @@ class User(AbstractUser):
 class Deck(models.Model):
     title = models.CharField(max_length=500)
     description = models.CharField(max_length=500)
+    correct_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.title
@@ -26,6 +27,7 @@ class Card(models.Model):
     deck = models.ForeignKey(
         Deck, related_name="cards", on_delete=models.CASCADE
     )
+    card_seen = models.BooleanField(default=False)
     
 # TODO make seperate pull request and change related name to "cards" so we can later do deck.cards
 

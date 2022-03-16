@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from ast import If
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Deck, User, Card
-from .forms import CardForm, DeckForm
+from .forms import CardForm, DeckForm, CardUpdateForm, DeckUpdateForm
 
 
 # Create your views here.
@@ -104,8 +105,6 @@ def delete_card(request, card_pk):
     return render(request, "cards/delete_card.html", {"card": card, })
 
 
-
-
 @login_required
 def card_list(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
@@ -113,8 +112,50 @@ def card_list(request, pk):
 
 
 def run_deck(request, deck_pk):
+    # need to get deck
     deck = get_object_or_404(Deck, pk=deck_pk)
-    return render(request, "cards/run_deck.html", {"deck": deck})
+    # check to see if any of the cards are true
+    # if no cards are false then reset all deck cards to false
+    if Card.objects.filter(deck_id=deck, card_seen=False) == 0:
+        # TODO change redirect to a results page
+        return render(request, "home")
+    else:
+        card = Card.objects.all().filter(deck_id=deck, card_seen=False).first()
+        deck_length = len(Card.objects.all().filter(deck_id=deck))
+
+    return render(request, "cards/run_deck.html", {"deck": deck, "card": card, "deck_length": deck_length})
 
 
+def add_correct(request, deck_pk, pk):
+    # breakpoint()
+    deck = get_object_or_404(Deck, pk=deck_pk)
+    card = get_object_or_404(Card, pk=pk)
+    if request.method == 'POST':
+        card_form = CardUpdateForm(data=request.POST, instance=card)
+        deck_form = DeckUpdateForm(data=request.POST, instance=deck)
+        if card_form.is_valid():
+            card_form = card_form.save(commit=False)
+            card_form.card_seen = True
+            card_form.deck_id = deck_pk
+            card_form.save()
+        if deck_form.is_valid():
+            deck_form = deck_form.save(commit=False)
+            deck_form.correct_count += 1
+            deck_form.save()
+            # return redirect(to='run_deck', deck_pk=deck_pk, pk=pk)
+        return redirect('run_deck', deck_pk=deck_pk, pk=pk)
 
+    # return render(request, "cards/run_deck.html", {"deck": deck, "card": card, "pk": card.pk})
+
+
+def incorrect(request, deck_pk, pk):
+    deck = get_object_or_404(Deck, deck_pk=pk)
+    card = get_object_or_404(Card, card_pk=pk)
+    if request.method == 'GET':
+        correct = Card
+    else:
+        correct = Card(request.method == 'POST')
+        Card.objects.filter(pk=deck_pk).update(card_seen=True)
+        return redirect(to="run_deck", deck_pk=deck_pk)
+
+    return render(request, "cards/correct.html", {"deck": deck, "card": card, "correct": correct})

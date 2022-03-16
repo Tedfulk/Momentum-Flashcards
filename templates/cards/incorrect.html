@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Mark Incorrect</h1>
+
+<div>
+ <form action="{% url 'incorrect' deck_pk=deck.pk %}" method="POST">
+  {% csrf_token %}
+  <div>
+   <button type="submit">Wrong</button>
+  </div>
+ </form>
+</div>
+{% endblock %}
