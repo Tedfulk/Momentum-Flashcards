@@ -1,0 +1,84 @@
+
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block javascript %}
+<script src={% static "js/run_deck.js" %} defer></script>
+{% endblock javascript %}
+
+{% block content %}
+
+This is where the user will do their flashcards
+This flashcard set = {{ deck.title }} - 
+{{ deck.description }}
+
+<h1>{{ deck.title }}</h1>
+<h3>Guess the words definition then hover over the card to reveal the answer!</h3>
+
+    <body>
+        <h4>Lets begin!</h4>
+        
+        <h2>Card</h2>
+        <section class="flashcard">
+        <div class="flex justify-around">
+            <div class="card-front outline w-35 pa3 mr2">
+            </br>
+                <h2 class="card-word tc">Word</h2>
+            </br>
+            </div>
+            <div class="card-back outline w-35 pa3 mr2 ">
+                
+                <span class="definition">
+                    </br>
+                    <h2 class="reveal tc">Definition</h2>
+                </span>
+                </div>    
+        </section>
+    </br>
+</br>
+        <section class="yes-no">
+        <div class="flex justify-around"> 
+            <section class="left-box fl w-25 pa2 mw5 mw7-ns center bg-light-gray b--dotted pa3 ph4-ns">
+                <h2 class="center mt0">Did you get it right?</h2>
+                <div class="lh-copy">
+                    <button class="yes tc">Yes</button>
+                    <button class="yes tc">No</button>
+                </div>
+            </section>
+        
+            <section class="counter">
+                <div class="counter-box flex">
+                    <div class="right-box fl w-55 pa2 b--solid">
+                            <h6>Number Correct</h6>
+                            <h2>0/20</h2>
+                        </div>
+                    </div>
+                
+                </section>
+        
+    </body>
+
+
+{% endblock %}
+
+
+
+<!-- <section class="card-container">
+    <div class="card-front">
+        <div class="word">
+            <h2>Word</h2>
+         </div>
+    </div>
+
+    <div class="card-back">
+        <div class="definition">
+            class="link mw5 dt hide-child br2 cover bg-center" ">
+            <span class="white dtc v-mid w-100 h-100 child bg-black-40 pa5">
+                <h2>definition</h2>
+            </span>
+            
+        </span>
+        </div>
+</div>
+</section> -->
