@@ -13,4 +13,28 @@ This is where the user will do their flashcards
 This flashcard set = {{ deck.title }} - 
 {{ deck.description }}
 
-{% endblock content %}
+<h1>{{ deck.title }}</h1>
+<h3>Guess the words definition then hover over the card to reveal the answer!</h3>
+
+    <body>
+        <h4>Lets begin!</h4>
+        
+        {% for card in deck.cards.all %}
+            <div>
+                <div>
+                    <h3 class="term">{{ card.word }}</h3>
+                </div>
+                <a style="background-color: white;";
+                class="link mw5 dt hide-child br2 cover bg-center">
+            <span class="white dtc v-mid w-100 h-100 child bg-black-40 pa5">
+                <h3 class="definition">{{ card.definition }}</h3>    
+            </span>
+        {% endfor %}
+        <div class="button">
+            <button class="check">Check definition</button>
+            <button class="next">Next Card</button>
+        </div>
+    </body>
+
+
+{% endblock %}

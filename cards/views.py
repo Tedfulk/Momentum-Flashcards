@@ -104,6 +104,8 @@ def delete_card(request, card_pk):
     return render(request, "cards/delete_card.html", {"card": card, })
 
 
+
+
 @login_required
 def card_list(request, pk):
     deck = get_object_or_404(Deck, pk=pk)
