@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Correct</h1>
+
+<div>
+ <form action="{% url 'results' deck_pk=deck.pk %}" method="POST">
+  {% csrf_token %}
+  <div>
+   <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy" href="{% url 'home' %}"><i class="fa-solid fa-bolt"></i> Home</a>
+  </div>
+ </form>
+</div>
+{% endblock %}

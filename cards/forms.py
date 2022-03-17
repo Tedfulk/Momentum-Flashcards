@@ -18,3 +18,11 @@ class CardForm(forms.ModelForm):
             'word',
             'definition',
         ]
+
+
+class CardUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Card
+        fields = [
+            'card_seen',
+        ]

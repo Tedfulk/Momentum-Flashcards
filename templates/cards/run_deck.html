@@ -9,31 +9,59 @@
 
 {% block content %}
 
-This is where the user will do their flashcards
-This flashcard set = {{ deck.title }} - 
-{{ deck.description }}
+
 
 <h1>{{ deck.title }}</h1>
 <h3>Guess the words definition then hover over the card to reveal the answer!</h3>
 
     <body>
-        <h4>Lets begin!</h4>
-        
-        {% for card in deck.cards.all %}
-            <div>
-                <div>
-                    <h3 class="term">{{ card.word }}</h3>
-                </div>
-                <a style="background-color: white;";
-                class="link mw5 dt hide-child br2 cover bg-center">
-            <span class="white dtc v-mid w-100 h-100 child bg-black-40 pa5">
-                <h3 class="definition">{{ card.definition }}</h3>    
-            </span>
-        {% endfor %}
-        <div class="button">
-            <button class="check">Check definition</button>
-            <button class="next">Next Card</button>
+     <h4>Lets begin!</h4>
+    
+     <section class="flashcard">
+      <div class="flex justify-around">
+       <div class="card-front outline w-35 pa3 mr2">
+        </br>
+        <h2 class="card-word tc">{{ card.word }}</h2>
+        </br>
+       </div>
+       <div class="card-back outline w-35 pa3 mr2 ">
+    
+        <span class="definition">
+         </br>
+         <h2 class="reveal tc">{{ card.definition }}</h2>
+        </span>
+       </div>
+     </section>
+     </br>
+     </br>
+     <section class="yes-no">
+      <div class="flex justify-around">
+       <section class="w-5 pa2 mw7-ns bg-light-gray b--dotted pa3 ph4-ns">
+        <h2 class="center mt0">Did you get it right?</h2>
+        <div class="lh-copy">
+         <div class="button">
+          <form id="yes" action="{% url 'correct' deck_pk=deck.pk pk=card.pk %}" method="POST">
+           {% csrf_token %}
+           <button type="submit" class="next tc">Yes</button>
+          </form>
+          <form id="no" action="{% url 'incorrect' pk=card.pk %}" method="POST" >
+           {% csrf_token %}
+           <button type="submit" class="next tc">No</button>
+          </form>
+         </div>
         </div>
+       </section>
+    
+       <section class="counter">
+        <div class="counter-box flex">
+         <div class="right-box fl w-55 pa2 b--solid">
+          <h6>Number Correct</h6>
+          <h2>{{ deck.correct_count }}/{{ deck_length }}</h2>
+         </div>
+        </div>
+    
+       </section>
+    
     </body>
 
 
