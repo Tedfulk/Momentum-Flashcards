@@ -2,13 +2,13 @@
 
 {% block content %}
 
-  <section class="mw7 left bg-light-gray pa3 ph5-ns">
+  <section class=" left bg-light-gray pa3 ph5-ns">
     <h1 class="mt0 dark-blue">{{ deck.title }} Deck</h1>
   <p class="lh-copy measure blue"> {{ deck.description }} </p>
   
   <a class="f6 link dim br2 ph3 pv2 mb2 dib bg-yellow white" href="{% url 'home' %}"> Home</a>
-  <a class="f6 link dim br2 ph3 pv2 mb2 dib bg-yellow white" href="{% url 'add_card' pk=deck.pk %}"><i class="fa fa-plus ph2"></i>Add Flashcard</a>
-  <a class="f6 link dim br2 ph3 pv2 mb2 dib bg-yellow white" href="{% url 'run_deck' deck_pk=deck.pk %}"><i class="fa-solid fa-bolt"></i> Run Flashcards</a>
+  <a class="f6 link dim bw1 br2 ph3 pv2 mb2 dib bg-yellow white" href="{% url 'add_card' pk=deck.pk %}"><i class="fa fa-plus ph2"></i>Add Flashcard</a>
+  <a class="f6 link dim br2 ph3 pv2 mb2 dib bg-white yellow b" href="{% url 'run_deck' deck_pk=deck.pk %}"><i class="fa-solid fa-bolt"></i> Run Flashcards</a>
 
 </section>
   <section class="card-list">
@@ -28,7 +28,6 @@
         </div>
     </section>
       {% endfor %}
-   
     <!-- <article>
       {% for card in deck.cards.all %}
       <div class="flex flex-column">
