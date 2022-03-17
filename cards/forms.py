@@ -11,14 +11,6 @@ class DeckForm(forms.ModelForm):
         ]
 
 
-class DeckUpdateForm(forms.ModelForm):
-    class Meta:
-        model = Deck
-        fields = [
-            'correct_count',
-        ]
-
-
 class CardForm(forms.ModelForm):
     class Meta:
         model = Card

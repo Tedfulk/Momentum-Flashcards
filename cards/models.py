@@ -29,7 +29,7 @@ class Card(models.Model):
     )
     card_seen = models.BooleanField(default=False)
     
-# TODO make seperate pull request and change related name to "cards" so we can later do deck.cards
+
 
     def __str__(self):
         return self.word

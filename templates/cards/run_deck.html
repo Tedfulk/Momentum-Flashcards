@@ -9,9 +9,7 @@
 
 {% block content %}
 
-This is where the user will do their flashcards
-This flashcard set = {{ deck.title }} - 
-{{ deck.description }}
+
 
 <h1>{{ deck.title }}</h1>
 <h3>Guess the words definition then hover over the card to reveal the answer!</h3>
@@ -19,7 +17,6 @@ This flashcard set = {{ deck.title }} -
     <body>
      <h4>Lets begin!</h4>
     
-     <h2>Card</h2>
      <section class="flashcard">
       <div class="flex justify-around">
        <div class="card-front outline w-35 pa3 mr2">
@@ -39,15 +36,15 @@ This flashcard set = {{ deck.title }} -
      </br>
      <section class="yes-no">
       <div class="flex justify-around">
-       <section class="left-box fl w-25 pa2 mw5 mw7-ns center bg-light-gray b--dotted pa3 ph4-ns">
+       <section class="w-5 pa2 mw7-ns bg-light-gray b--dotted pa3 ph4-ns">
         <h2 class="center mt0">Did you get it right?</h2>
         <div class="lh-copy">
          <div class="button">
-          <form action="{% url 'correct' deck_pk=deck.pk pk=card.pk %}" method="POST">
+          <form id="yes" action="{% url 'correct' deck_pk=deck.pk pk=card.pk %}" method="POST">
            {% csrf_token %}
            <button type="submit" class="next tc">Yes</button>
           </form>
-          <form action="{% url 'incorrect' pk=card.pk %}" method="POST" >
+          <form id="no" action="{% url 'incorrect' pk=card.pk %}" method="POST" >
            {% csrf_token %}
            <button type="submit" class="next tc">No</button>
           </form>

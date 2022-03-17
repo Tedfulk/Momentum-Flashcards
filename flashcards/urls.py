@@ -29,6 +29,7 @@ urlpatterns = [
          flash_views.edit_deck, name='edit_deck'),
     path('cards/<int:pk>/', flash_views.card_list, name='card_list'),
     path('deck/<int:deck_pk>/run', flash_views.run_deck, name='run_deck'),
+    path('deck/<int:deck_pk>/results', flash_views.results, name='results'),
     path('deck/<int:deck_pk>/cards/<int:pk>/correct',
          flash_views.add_correct, name='correct'),
     path('cards/<int:pk>/incorrect', flash_views.incorrect, name='incorrect'),
