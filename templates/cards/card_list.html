@@ -2,24 +2,62 @@
 
 {% block content %}
 
+  <section class="mw7 left bg-light-gray pa3 ph5-ns">
+    <h1 class="mt0 dark-blue">{{ deck.title }} Deck</h1>
+  <p class="lh-copy measure blue"> {{ deck.description }} </p>
+  
+  <a class="f6 link dim br2 ph3 pv2 mb2 dib bg-yellow white" href="{% url 'home' %}"> Home</a>
+  <a class="f6 link dim br2 ph3 pv2 mb2 dib bg-yellow white" href="{% url 'add_card' pk=deck.pk %}"><i class="fa fa-plus ph2"></i>Add Flashcard</a>
+  <a class="f6 link dim br2 ph3 pv2 mb2 dib bg-yellow white" href="{% url 'run_deck' deck_pk=deck.pk %}"><i class="fa-solid fa-bolt"></i> Run Flashcards</a>
 
-  <h1>All Cards</h1>
-  <div class="button ph3 mb4">
-  <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy" href="{% url 'home' %}"><i class="fa-solid fa-bolt"></i> Home</a>
-  <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy"href="{% url 'add_card' pk=deck.pk %}">Add Flashcard</a>
-  <a class="f6 link dim br2 ba bw2 ph3 pv2 mb2 dib navy"href="{% url 'run_deck' deck_pk=deck.pk %}">Run Flashcards</a>
-  </div>
-  <div class="each-card ba br2 b--dark-blue bg-bg-yellow pa2>
+</section>
+  <section class="card-list">
+    <div class="container">
+      {% for card in deck.cards.all %}
+        <div class="home-deck"> 
+            <div class="deck mw7 left mv3 pa4 pv2 br2 bg-white">
+              <h1 class="deck_title f2 fw5 tc dark-blue no-underline">{{ card.word }}</h1>
+            <div class=" ph7 black-10 bt">
+            <p class="mv1 f2 lh-copy tc blue">{{ card.definition }} </p>          
+          </div>
+          <div class="bottom-buttons">
+            <a href="{% url 'edit_card' card_pk=card.pk %}"><i class="fa-solid fa-pen-to-square db black-60 link dim pa2"></i></a>
+            <a href="{% url 'delete_card' card_pk=card.pk %}"><i class="fa-solid fa-circle-minus db black-60 link dim pa2"></i></a>                    
+            </div>
+        </div>
+        </div>
+    </section>
+      {% endfor %}
+   
+    <!-- <article>
+      {% for card in deck.cards.all %}
+      <div class="flex flex-column">
+        <div class="outline w-25 pa3 mr2">
+      
+        <h1 class="f4 bg-near-white br3 br--top black-60 mv0 pv2 ph3">
+          <p>{{ card.word }}</p>
+        </h1>
+      <div class="pa3 bt b--black-10">
+        <p class="f6 f5-ns lh-copy measure">
+          <p>{{ card.definition }}</p>
+          </br></p>
+      <button><a href="{% url 'edit_card' card_pk=card.pk %}" class="no-underline black">Edit Card</a></button><br />
+      <button><a href="{% url 'delete_card' card_pk=card.pk %}" class="no-underline black">Delete Card</a></button>
+        
+     </div>
+    {% endfor %}
+    </div>
+    </article> -->
+  <!-- <div class="each-card ba br2 b--dark-blue bg-bg-yellow pa2>
   {% for card in deck.cards.all %}
   <div class="ba br2 pa2">
     <p>{{ card.word }}</p>
     <p>{{ card.definition }}</p>
   
-  <button><a href="{% url 'edit_card' card_pk=card.pk %}" class="no-underline black">Edit Card</a></button><br />
-  <button><a href="{% url 'delete_card' card_pk=card.pk %}" class="no-underline black">Delete Card</a></button>
   
-  </br>
-  {% endfor %}
+  
+  </br> -->
+  <!-- {% endfor %} -->
   </div>
 
 
