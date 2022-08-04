@@ -6,7 +6,7 @@ create a website capable of creating a unique,
 individual and adaptive deck of cards. This deck
 of cards are capable of containting any number
 of flashcards to helpthe user study or prepare
-for an upcomeing exam.
+for an upcoming exam.
 
 
 # Getting Started
